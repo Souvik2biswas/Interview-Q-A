@@ -707,7 +707,7 @@ The theoretical long-run weighted average value of a random variable ($E[X]$):
 - Continuous: $E[X] = \int_{-\infty}^{\infty} x f(x) dx$
 
 **8. Law of large numbers**
-As the number of independent trials ($n$) increases, the sample average ($\bar{X}_n$) converges guarantees toward the true expected population value ($E[X]$).
+As the number of independent trials ($n$) increases, the sample average ($\bar{X}_n$) is guaranteed to converge toward the true expected population value ($E[X]$).
 
 **9. Bernoulli distribution**
 A discrete probability distribution for a single trial with exactly two possible outcomes: Success ($X=1$) with probability $p$, and Failure ($X=0$) with probability $q = 1-p$. Mean $= p$, Variance $= p(1-p)$.
