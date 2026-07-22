@@ -567,7 +567,9 @@ A measure of the "tailedness" and extreme value probability of a probability dis
 
 **7. What is variance?**
 The average of the squared deviations of data points from their sample mean ($\bar{x}$):
-$$s^2 = \frac{\sum (x_i - \bar{x})^2}{n - 1}$$
+$$
+s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n - 1}
+$$
 Quantifies total dispersion or variability. Measured in squared units of the original variable.
 
 **8. What is standard deviation?**
@@ -583,7 +585,9 @@ A standardized statistical measure quantifying the strength and direction of a l
 
 **10. What is covariance?**
 A non-standardized measure of the joint variability of two random variables:
-$$\text{Cov}(X, Y) = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{n - 1}$$
+$$
+\text{Cov}(X, Y) = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{n - 1}
+$$
 - **Interpretation:** Positive covariance indicates variables tend to move in the same direction; negative covariance indicates opposite directions. Unlike correlation, its magnitude depends on feature scale, making direct comparison across variable pairs impossible.
 
 ## 9. Descriptive Statistics
@@ -639,7 +643,7 @@ A formal statistical procedure that uses sample evidence to evaluate the validit
 
 **3. p-value meaning**
 The probability of obtaining a test statistic at least as extreme as the one observed in the sample, assuming the null hypothesis ($H_0$) is strictly true.
-- If $p\text{-value} \le \alpha$ (significance level, e.g., 0.05), reject $H_0$.
+- If $p \le \alpha$ (significance level, e.g., 0.05), reject $H_0$.
 - **Misconception:** The p-value is **not** the probability that the null hypothesis is true.
 
 **4. Confidence interval**
@@ -681,16 +685,22 @@ A numerical measure ranging from 0 (impossible event) to 1 (certain event) repre
 
 **2. Conditional probability**
 The probability of event $A$ occurring given that event $B$ has already occurred:
-$$P(A|B) = \frac{P(A \cap B)}{P(B)}, \quad \text{where } P(B) > 0$$
+$$
+P(A|B) = \frac{P(A \cap B)}{P(B)}, \quad \text{where } P(B) > 0
+$$
 
 **3. Bayes theorem**
 A mathematical formula used to update the conditional probability of a hypothesis ($A$) as new empirical evidence ($B$) becomes available:
-$$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
+$$
+P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
+$$
 - **Components:** $P(A)$ is the Prior, $P(B|A)$ is the Likelihood, and $P(A|B)$ is the Posterior probability.
 
 **4. Independent events**
 Two events $A$ and $B$ are independent if the occurrence of $B$ does not alter the probability of $A$:
-$$P(A \cap B) = P(A) \cdot P(B) \quad \text{and} \quad P(A|B) = P(A)$$
+$$
+P(A \cap B) = P(A) \cdot P(B) \quad \text{and} \quad P(A|B) = P(A)
+$$
 
 **5. Random variable**
 A variable whose numerical values are outcomes of a random phenomenon.
@@ -699,12 +709,12 @@ A variable whose numerical values are outcomes of a random phenomenon.
 
 **6. Probability distribution**
 - **Discrete:** Probability Mass Function (PMF), $P(X = x)$, assigning probabilities to discrete outcomes.
-- **Continuous:** Probability Density Function (PDF), $f(x)$, where area under the curve represents probability ($\int_a^b f(x)dx = P(a \le X \le b)$).
+- **Continuous:** Probability Density Function (PDF), $f(x)$, where area under the curve represents probability ($\int_a^b f(x) \, dx = P(a \le X \le b)$).
 
 **7. Expected value**
 The theoretical long-run weighted average value of a random variable ($E[X]$):
-- Discrete: $E[X] = \sum x_i P(x_i)$
-- Continuous: $E[X] = \int_{-\infty}^{\infty} x f(x) dx$
+- Discrete: $E[X] = \sum_{i} x_i P(x_i)$
+- Continuous: $E[X] = \int_{-\infty}^{\infty} x f(x) \, dx$
 
 **8. Law of large numbers**
 As the number of independent trials ($n$) increases, the sample average ($\bar{X}_n$) is guaranteed to converge toward the true expected population value ($E[X]$).
@@ -714,7 +724,9 @@ A discrete probability distribution for a single trial with exactly two possible
 
 **10. Normal distribution**
 A continuous bell-shaped distribution symmetric about mean $\mu$, governed by the probability density function:
-$$f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$$
+$$
+f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
+$$
 - Forms the basis of Gaussian noise assumptions, standardized Z-scores ($Z = \frac{X - \mu}{\sigma}$), and parametric statistics.
 
 
@@ -802,7 +814,7 @@ A collection of data samples where each observation contains both feature vector
   - Mean Absolute Error (MAE): $\frac{1}{n} \sum |y_i - \hat{y}_i|$
   - Mean Squared Error (MSE): $\frac{1}{n} \sum (y_i - \hat{y}_i)^2$
   - Root Mean Squared Error (RMSE): $\sqrt{\text{MSE}}$
-  - $R^2$ Score: $1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}$
+  - $R^2$ Score: $1 - \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2}$
 
 **7. Overfitting**
 When a supervised model learns specific noise, outliers, or spurious patterns in training data, leading to stellar training performance but poor generalization on test data.
@@ -863,8 +875,8 @@ Customer persona segmentation, anomaly & credit card fraud detection, recommenda
 - Interpretation of derived components/clusters can be subjective.
 
 **9. Distance metrics**
-- **Euclidean Distance ($L_2$ norm):** $d(u, v) = \sqrt{\sum (u_i - v_i)^2}$. Sensitive to scale and high dimensions.
-- **Manhattan Distance ($L_1$ norm):** $d(u, v) = \sum |u_i - v_i|$. Robust for grid-based dimensions.
+- **Euclidean Distance ($L_2$ norm):** $d(u, v) = \sqrt{\sum_{i=1}^n (u_i - v_i)^2}$. Sensitive to scale and high dimensions.
+- **Manhattan Distance ($L_1$ norm):** $d(u, v) = \sum_{i=1}^n |u_i - v_i|$. Robust for grid-based dimensions.
 - **Cosine Distance:** $1 - \frac{u \cdot v}{\|u\| \|v\|}$. Measures directional angle rather than magnitude; standard in NLP text vector similarity.
 
 **10. Real-world use cases**
@@ -874,8 +886,10 @@ Segmenting user bases by behavioral patterns, anomaly detection in network secur
 
 **1. What is linear regression?**
 A parametric supervised learning algorithm that models a continuous target variable $y$ as a linear combination of feature variables $X$:
-$$\hat{y} = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \epsilon$$
-Evaluated by minimizing Ordinary Least Squares (OLS) residual sum of squares: $\text{RSS} = \sum (y_i - \hat{y}_i)^2$.
+$$
+\hat{y} = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \epsilon
+$$
+Evaluated by minimizing Ordinary Least Squares (OLS) residual sum of squares: $\text{RSS} = \sum_{i=1}^n (y_i - \hat{y}_i)^2$.
 
 **2. Assumptions**
 1. **Linearity:** The relationship between features and target is linear.
@@ -886,22 +900,26 @@ Evaluated by minimizing Ordinary Least Squares (OLS) residual sum of squares: $\
 
 **3. R² score**
 Coefficient of Determination ($R^2$):
-$$R^2 = 1 - \frac{\text{SS}_{\text{res}}}{\text{SS}_{\text{tot}}} = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}$$
+$$
+R^2 = 1 - \frac{\text{SS}_{\text{res}}}{\text{SS}_{\text{tot}}} = 1 - \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2}
+$$
 Proportion of target variable variance explained by predictors ($0 \le R^2 \le 1$). Adjusted $R^2$ penalizes adding non-informative features: $R^2_{\text{adj}} = 1 - \left[\frac{(1-R^2)(n-1)}{n-p-1}\right]$.
 
 **4. MSE vs MAE**
-- **Mean Squared Error (MSE):** $\frac{1}{n}\sum (y_i - \hat{y}_i)^2$. Squares residuals, heavily penalizing large error outliers. Differentiable (smooth gradient).
-- **Mean Absolute Error (MAE):** $\frac{1}{n}\sum |y_i - \hat{y}_i|$. Linear error penalties, making it robust to extreme outliers. Non-differentiable at 0.
+- **Mean Squared Error (MSE):** $\frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2$. Squares residuals, heavily penalizing large error outliers. Differentiable (smooth gradient).
+- **Mean Absolute Error (MAE):** $\frac{1}{n} \sum_{i=1}^n |y_i - \hat{y}_i|$. Linear error penalties, making it robust to extreme outliers. Non-differentiable at 0.
 
 **5. Multicollinearity**
 When two or more predictor features are strongly correlated, making it mathematically unstable to invert $(X^T X)^{-1}$ in OLS.
 - **Consequences:** Inflates coefficient variance, making feature importance unstable and uninterpretable.
-- **Detection:** Variance Inflation Factor ($\text{VIF} > 5 \text{ or } 10$ indicates severe multicollinearity).
+- **Detection:** Variance Inflation Factor ($\text{VIF}_j = \frac{1}{1 - R_j^2}$; a $\text{VIF} > 5$ or $10$ indicates severe multicollinearity).
 - **Remedies:** Drop collinear features, apply PCA, or use Ridge/Lasso regularization.
 
 **6. Gradient descent**
 First-order iterative optimization algorithm used to estimate parameters $\theta$ by minimizing cost function $J(\theta)$:
-$$\theta^{(t+1)} = \theta^{(t)} - \alpha \nabla_\theta J(\theta)$$
+$$
+\theta^{(t+1)} = \theta^{(t)} - \alpha \nabla_\theta J(\theta)
+$$
 Where $\alpha$ is the learning rate. Variants: Batch GD, Stochastic GD (SGD), Mini-Batch GD.
 
 **7. Simple vs multiple regression**
@@ -985,7 +1003,9 @@ A classic text vectorization model that represents a document as a fixed-length 
 
 **6. TF-IDF**
 Term Frequency–Inverse Document Frequency weights token importance by balancing raw frequency in a document against rarity across the corpus:
-$$\text{TF-IDF}(t, d, D) = \text{TF}(t, d) \times \text{IDF}(t, D)$$
+$$
+\text{TF-IDF}(t, d, D) = \text{TF}(t, d) \times \text{IDF}(t, D)
+$$
 - $\text{TF}(t, d) = \frac{\text{Count of } t \text{ in } d}{\text{Total tokens in } d}$
 - $\text{IDF}(t, D) = \log\left(\frac{N}{|\{d \in D : t \in d\}|}\right)$
 - Downweights ubiquitous terms (like `"and"`, `"the"`) while boosting distinctive domain terms (like `"hyperparameter"`).
